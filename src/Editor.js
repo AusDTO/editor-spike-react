@@ -6,13 +6,13 @@ import Document from './Document.js';
 
 class Editor extends Component {
   render() {
-    let { appendBlock, blockContentChanged, document } = this.props;
+    let { appendBlock, updateBlockContent, document } = this.props;
     return (
       <div className="editor">
         <Palette onBlockClicked={appendBlock}/>
         <Document
 					document={document}
-					onBlockContentChanged={blockContentChanged}
+					onBlockContentChanged={updateBlockContent}
 				/>
       </div>
     );
@@ -34,7 +34,7 @@ function mapDispatchToProps(dispatch) {
     appendBlock: (blockKind) => {
 			dispatch({type: 'appendBlock', block: {kind: blockKind, content: "Lorem ipsum..."}});
     },
-    blockContentChanged: (blockIndex, newContent) => {
+    updateBlockContent: (blockIndex, newContent) => {
 			dispatch({type: 'updateBlockContent', blockIndex: blockIndex, newContent: newContent});
     },
   }
