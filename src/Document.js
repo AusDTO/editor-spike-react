@@ -37,13 +37,4 @@ Document.propTypes = {
 	onBlockContentChanged: PropTypes.func.isRequired
 };
 
-/*
-
-								<HTMLTagElement
-									tagName={block.kind}
-                  content={block.content}
-                  blockIndex={index}
-                  onContentChange={onBlockContentChanged}/>
-
-*/
 export default Document;
