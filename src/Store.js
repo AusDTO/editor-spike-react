@@ -10,6 +10,7 @@ function Store(state = Immutable({document: {blocks: []}}), action) {
       // valid if there is only one action in the dispatch queue at a time.
       return state.updateIn(['document', 'blocks', action.blockIndex, 'content'], _ => action.newContent);
     default:
+      console.warn("unknown action type ${action.type}");
       return state;
   }
 }
