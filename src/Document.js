@@ -1,29 +1,34 @@
 import React, { Component, PropTypes } from 'react';
 
-import HTMLTagElement from './HTMLTagElement';
+import ContentEditable from 'react-contenteditable';
 import CommonEditControls from './CommonEditControls';
 
 class Document extends Component {
 
   render() {
-    let { document, onBlockContentChanged } = this.props;
+    let { document } = this.props;
     return (
       <div className="document">
         {
           document.blocks.map((block,index) => {
             return (
-							<CommonEditControls key={index}>
-								<HTMLTagElement
-									tagName={block.kind}
-                  content={block.content}
-                  blockIndex={index}
-                  onContentChange={onBlockContentChanged}/>
-							</CommonEditControls>
-						);
+              <CommonEditControls key={index}>
+                <ContentEditable
+                  tagName={block.kind}
+                  html={block.content}
+                  onChange={this.contentEditableChanged.bind(this, index)}
+                />
+              </CommonEditControls>
+            );
           })
         }
       </div>
     );
+  }
+
+  contentEditableChanged(blockIndex, event) {
+    let { onBlockContentChanged } = this.props;
+    onBlockContentChanged(blockIndex, event.target.value);
   }
 }
 
@@ -32,4 +37,13 @@ Document.propTypes = {
 	onBlockContentChanged: PropTypes.func.isRequired
 };
 
+/*
+
+								<HTMLTagElement
+									tagName={block.kind}
+                  content={block.content}
+                  blockIndex={index}
+                  onContentChange={onBlockContentChanged}/>
+
+*/
 export default Document;

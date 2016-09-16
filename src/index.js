@@ -7,7 +7,7 @@ import App from './App';
 import './index.css';
 import Store from './Store.js';
 
-const store = createStore(Store);
+const store = createStore(Store, window.devToolsExtension && window.devToolsExtension());
 
 ReactDOM.render(
   <Provider store={store}>

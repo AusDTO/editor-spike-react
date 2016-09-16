@@ -35,7 +35,6 @@ function mapDispatchToProps(dispatch) {
 			dispatch({type: 'appendBlock', block: {kind: blockKind, content: "Lorem ipsum..."}});
     },
     blockContentChanged: (blockIndex, newContent) => {
-      console.log('Editor#blockContentChanged', blockIndex, newContent);
 			dispatch({type: 'updateBlockContent', blockIndex: blockIndex, newContent: newContent});
     },
   }
