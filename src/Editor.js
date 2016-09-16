@@ -6,11 +6,14 @@ import Document from './Document.js';
 
 class Editor extends Component {
   render() {
-    let { appendBlock, document } = this.props;
+    let { appendBlock, blockContentChanged, document } = this.props;
     return (
       <div className="editor">
         <Palette onBlockClicked={appendBlock}/>
-        <Document document={document}/>
+        <Document
+					document={document}
+					onBlockContentChanged={blockContentChanged}
+				/>
       </div>
     );
   }
@@ -29,20 +32,12 @@ function mapStateToProps(state) {
 function mapDispatchToProps(dispatch) {
   return {
     appendBlock: (blockKind) => {
-      switch (blockKind) {
-        case "h1":
-        case "h2":
-        case "h3":
-        case "p":
-        case "blockquote": {
-          dispatch({type: 'appendBlock', block: {kind: blockKind, content: "Lorem ipsum..."}});
-          break;
-        }
-        default: {
-          console.warn("unknown block name", blockKind);
-        }
-      }
-    }
+			dispatch({type: 'appendBlock', block: {kind: blockKind, content: "Lorem ipsum..."}});
+    },
+    blockContentChanged: (blockIndex, newContent) => {
+      console.log('Editor#blockContentChanged', blockIndex, newContent);
+			dispatch({type: 'updateBlockContent', blockIndex: blockIndex, newContent: newContent});
+    },
   }
 }
 
