@@ -10,7 +10,7 @@ function Store(state = Immutable({document: {blocks: []}}), action) {
       // An insert from one editor applied before an update from another editor would shift the index.
       return state.updateIn(['document', 'blocks', action.blockIndex, 'content'], _ => action.newContent);
     default:
-      console.warn("unknown action type ${action.type}");
+      console.warn(`unknown action type ${action.type}`);
       return state;
   }
 }
