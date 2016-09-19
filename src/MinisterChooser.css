@@ -1,0 +1,8 @@
+
+.MinisterChooser ul {
+  list-style-type: none;
+}
+.MinisterChooser button {
+  border-radius: 30px;
+  display: inline-block;
+}

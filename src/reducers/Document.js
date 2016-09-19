@@ -25,6 +25,16 @@ export default function Document(state = initialState(), action) {
       return state.updateIn(['blocks'], _ => action.blocks);
     case 'deleteBlock':
       return state.updateIn(['blocks'], list => list.filter(block => block.id !== action.block.id));
+    case 'ministerChosen':
+      return state.updateIn(['blocks'], list =>
+        list.map(block => {
+          if (block.id === action.block.id) {
+            return block.updateIn(['minister'], _ => action.minister);
+          } else {
+            return block;
+          }
+        })
+      );
     default:
       return state;
   }

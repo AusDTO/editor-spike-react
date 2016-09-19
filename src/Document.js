@@ -5,6 +5,7 @@ import HTML5Backend from 'react-dnd-html5-backend';
 import ContentEditable from 'react-contenteditable';
 
 import CommonEditControls from './CommonEditControls';
+import Minister from './Minister';
 import Block from './Block';
 import DndItemTypes from './DndItemTypes';
 import './Document.css';
@@ -42,12 +43,21 @@ class Document extends Component {
           blocks.map((block) => {
             return (
               <Block id={block.id} key={block.id} moveBlock={this.moveBlock.bind(this)} findBlock={this.findBlock.bind(this)}>
-                <CommonEditControls block={block} onDeleteBlock={this.deleteBlock.bind(this)}>
-                  <ContentEditable
-                    tagName={block.kind}
-                    html={block.content}
-                    onChange={this.contentEditableChanged.bind(this, block.id)}
-                  />
+                <CommonEditControls
+                  block={block}
+                  onDeleteBlock={this.deleteBlock.bind(this)}
+                  onChooseMinister={this.onChooseMinister.bind(this)}
+                >
+                  {
+                    (block.kind === "Minister") ?
+                      <Minister minister={block.minister}/>
+                    :
+                      <ContentEditable
+                        tagName={block.kind}
+                        html={block.content}
+                        onChange={this.contentEditableChanged.bind(this, block.id)}
+                      />
+                  }
                 </CommonEditControls>
               </Block>
             );
@@ -66,6 +76,11 @@ class Document extends Component {
     let { onBlockDeleted } = this.props;
     onBlockDeleted(block);
   }
+
+  onChooseMinister(block) {
+    let { onChooseMinister } = this.props;
+    onChooseMinister(block);
+  }
 }
 
 Document.propTypes = {
@@ -74,6 +89,7 @@ Document.propTypes = {
   onBlockContentChanged: PropTypes.func.isRequired,
   onBlocksReordered: PropTypes.func.isRequired,
   onBlockDeleted: PropTypes.func.isRequired,
+  onChooseMinister: PropTypes.func.isRequired,
 };
 
 const blockTarget = {
