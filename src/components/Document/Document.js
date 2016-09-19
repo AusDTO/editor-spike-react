@@ -4,9 +4,10 @@ import { DropTarget, DragDropContext } from 'react-dnd';
 import HTML5Backend from 'react-dnd-html5-backend';
 import ContentEditable from 'react-contenteditable';
 
-import CommonEditControls from './CommonEditControls';
-import Minister from './Minister';
-import Block from './Block';
+import CommonEditControls from '../CommonEditControls';
+import Minister from '../Minister';
+import Block from '../Block';
+
 import DndItemTypes from './DndItemTypes';
 import './Document.css';
 

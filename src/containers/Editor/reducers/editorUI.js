@@ -23,7 +23,7 @@ function initialState() {
   });
 }
 
-export default function UI(state = initialState(), action) {
+export default function ui(state = initialState(), action) {
   switch (action.type) {
     case 'showMinisterChooser':
       return state.updateIn(['ministerChooser', 'forBlock'], _ => action.block);

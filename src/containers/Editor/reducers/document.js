@@ -11,7 +11,7 @@ function indexOfBlock(blocks, blockId) {
   return blocks.findIndex(block => block.id === blockId)
 }
 
-export default function Document(state = initialState(), action) {
+export default function document(state = initialState(), action) {
   switch (action.type) {
     case 'appendBlock':
       return state.updateIn(['blocks'], list => list.concat(action.block));

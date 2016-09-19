@@ -1,6 +1,7 @@
 import React, { Component, PropTypes } from 'react';
-import DndItemTypes from './DndItemTypes';
 import { DragSource, DropTarget } from 'react-dnd';
+
+import DndItemTypes from '../Document/DndItemTypes';
 
 const style = {
   padding: 0,

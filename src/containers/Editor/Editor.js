@@ -2,11 +2,12 @@ import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 import uuid from 'uuid';
 
-import Palette from './Palette';
-import Document from './Document';
-import MinisterChooser from './MinisterChooser';
+import Palette from '../../components/Palette';
+import Document from '../../components/Document';
+import MinisterChooser from '../../components/MinisterChooser';
+import imgPlaceholder from '../../components/Minister/img-placeholder.gif';
+
 import './Editor.css';
-import imgPlaceholder from './img-placeholder.gif';
 
 class Editor extends Component {
   render() {
@@ -18,15 +19,15 @@ class Editor extends Component {
       chooseMinister,
       ministerChosen,
       document,
-      ui
+      editorUI 
     } = this.props;
 
     return (
       <div className="Editor">
         <Palette onBlockClicked={appendBlock} />
         <MinisterChooser
-          block={ui.ministerChooser.forBlock}
-          ministers={ui.ministers}
+          block={editorUI.ministerChooser.forBlock}
+          ministers={editorUI.ministers}
           onMinisterChosen={ministerChosen}/>
         <Document
           blocks={document.blocks}
@@ -47,7 +48,7 @@ Editor.propTypes = {
 function mapStateToProps(state) {
   return {
     document: state.document,
-    ui: state.ui
+    editorUI: state.editorUI
   }
 }
 

@@ -2,7 +2,7 @@ import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 
 import './App.css';
-import Editor from './Editor.js';
+import Editor from '../Editor';
 
 class App extends Component {
   render() {
