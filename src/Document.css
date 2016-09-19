@@ -1,4 +1,8 @@
 
 .Document {
-  margin: 30px;
+  padding: 30px;
+  min-height: 90vh;
+  border: 1px solid #BEBEBE;
+  border: 1px solid white;
+	box-shadow: 0 0 2px #BEBEBE;
 }
