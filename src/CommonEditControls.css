@@ -7,21 +7,35 @@
   display: none;
 }
 
-.CommonEditControls:hover .tools {
-  position: absolute;
-  display: block;
+.CommonEditControls .tools button:nth-child(1) {
+  background-color: #5BCBE3;
+  border-radius:30px;
 }
 
 .CommonEditControls .tools button {
-  margin: 0;
+  margin-right: 10px;
   padding: 5px;
   background-color: #fdf7dc;
   color: black;
+  box-shadow: 0 0 8px #BEBEBE;
+  border-radius:10px;
+}
+
+.CommonEditControls .tools button.action {
+  border-radius:5px;
+}
+
+.CommonEditControls:hover {
+  outline: 2px dashed #BEBEBE;
+}
+
+.CommonEditControls:hover .tools {
+  position: absolute;
+  display: block;
 }
 
 .CommonEditControls:hover .tools {
   position: absolute;
   display: block;
   transform: scale(0.5) translateX(-60px) translateY(-50px);
-  box-shadow: 0 0 8px #BEBEBE;
 }

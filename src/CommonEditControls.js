@@ -4,12 +4,13 @@ import './CommonEditControls.css'
 export default class CommonEditControls extends Component {
 
   render () {
-    let { children } = this.props;
+    let { block, children } = this.props;
     return (
       <div className="CommonEditControls" >
 
         <div className="tools" >
-          <button onClick={this.deleteBlock.bind(this)}>delete</button>
+          <button className="info">&lt;{block.kind}&gt;</button>
+          <button className="action" onClick={this.deleteBlock.bind(this)}>delete</button>
         </div>
 
         { children }
