@@ -1,0 +1,27 @@
+
+.CommonEditControls {
+  position: relative;
+}
+
+.CommonEditControls .tools {
+  display: none;
+}
+
+.CommonEditControls:hover .tools {
+  position: absolute;
+  display: block;
+}
+
+.CommonEditControls .tools button {
+  margin: 0;
+  padding: 5px;
+  background-color: #fdf7dc;
+  color: black;
+}
+
+.CommonEditControls:hover .tools {
+  position: absolute;
+  display: block;
+  transform: scale(0.5) translateX(-60px) translateY(-50px);
+  box-shadow: 0 0 8px #BEBEBE;
+}
