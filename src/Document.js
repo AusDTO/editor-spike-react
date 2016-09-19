@@ -7,6 +7,7 @@ import ContentEditable from 'react-contenteditable';
 import CommonEditControls from './CommonEditControls';
 import Block from './Block';
 import DndItemTypes from './DndItemTypes';
+import './Document.css';
 
 class Document extends Component {
 
@@ -36,7 +37,7 @@ class Document extends Component {
   render() {
     let { blocks } = this.props;
     return (
-      <div className="document">
+      <div className="Document">
         {
           blocks.map((block) => {
             return (

@@ -4,6 +4,7 @@ import uuid from 'uuid';
 
 import Palette from './Palette.js';
 import Document from './Document.js';
+import './Editor.css';
 
 class Editor extends Component {
   render() {
@@ -16,7 +17,7 @@ class Editor extends Component {
     } = this.props;
 
     return (
-      <div className="editor">
+      <div className="Editor">
         <Palette onBlockClicked={appendBlock}/>
         <Document
           blocks={document.blocks}

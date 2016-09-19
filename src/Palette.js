@@ -1,9 +1,10 @@
 import React, { Component, PropTypes } from 'react';
+import './Palette.css';
 
 class Palette extends Component {
   render () {
     return (
-      <div className="palette">
+      <div className="Palette">
         {this.blockButton("h1")}
         {this.blockButton("h2")}
         {this.blockButton("h3")}

@@ -1,4 +1,8 @@
+
+#root {
+  background-color: #F0F3F5;
+}
+
 .wrapper {
   width: 100%;
-  border: solid black 2px;
 }
