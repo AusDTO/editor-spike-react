@@ -1,19 +1,21 @@
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
+import uuid from 'uuid';
 
 import Palette from './Palette.js';
 import Document from './Document.js';
 
 class Editor extends Component {
   render() {
-    let { appendBlock, updateBlockContent, document } = this.props;
+    let { appendBlock, updateBlockContent, updateBlockOrder, document } = this.props;
     return (
       <div className="editor">
         <Palette onBlockClicked={appendBlock}/>
         <Document
-					document={document}
-					onBlockContentChanged={updateBlockContent}
-				/>
+          blocks={document.blocks}
+          onBlockContentChanged={updateBlockContent}
+          onBlocksReordered={updateBlockOrder}
+        />
       </div>
     );
   }
@@ -32,10 +34,13 @@ function mapStateToProps(state) {
 function mapDispatchToProps(dispatch) {
   return {
     appendBlock: (blockKind) => {
-			dispatch({type: 'appendBlock', block: {kind: blockKind, content: "Lorem ipsum..."}});
+      dispatch({type: 'appendBlock', block: {id: uuid.v4(), kind: blockKind, content: "Lorem ipsum..."}});
     },
-    updateBlockContent: (blockIndex, newContent) => {
-			dispatch({type: 'updateBlockContent', blockIndex: blockIndex, newContent: newContent});
+    updateBlockContent: (blockId, newContent) => {
+      dispatch({type: 'updateBlockContent', blockId, newContent});
+    },
+    updateBlockOrder: (blocks) => {
+      dispatch({type: 'updateBlockOrder', blocks});
     },
   }
 }
