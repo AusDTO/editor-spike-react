@@ -41,7 +41,7 @@ class Document extends Component {
           blocks.map((block) => {
             return (
               <Block id={block.id} key={block.id} moveBlock={this.moveBlock.bind(this)} findBlock={this.findBlock.bind(this)}>
-                <CommonEditControls>
+                <CommonEditControls block={block} onDeleteBlock={this.deleteBlock.bind(this)}>
                   <ContentEditable
                     tagName={block.kind}
                     html={block.content}
@@ -56,9 +56,14 @@ class Document extends Component {
     );
   }
 
-  contentEditableChanged(blockIndex, event) {
+  contentEditableChanged(blockId, event) {
     let { onBlockContentChanged } = this.props;
-    onBlockContentChanged(blockIndex, event.target.value);
+    onBlockContentChanged(blockId, event.target.value);
+  }
+
+  deleteBlock(block) {
+    let { onBlockDeleted } = this.props;
+    onBlockDeleted(block);
   }
 }
 
@@ -66,7 +71,8 @@ Document.propTypes = {
   blocks: PropTypes.array.isRequired,
   connectDropTarget: PropTypes.func.isRequired,
   onBlockContentChanged: PropTypes.func.isRequired,
-  onBlocksReordered: PropTypes.func.isRequired
+  onBlocksReordered: PropTypes.func.isRequired,
+  onBlockDeleted: PropTypes.func.isRequired,
 };
 
 const blockTarget = {

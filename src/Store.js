@@ -18,6 +18,9 @@ function Store(state = Immutable({document: {blocks: []}}), action) {
       ], _ => action.newContent);
     case 'updateBlockOrder':
       return state.updateIn(['document', 'blocks'], _ => action.blocks);
+    case 'deleteBlock':
+      console.log("store delete block", action.block);
+      return state.updateIn(['document', 'blocks'], list => list.filter(block => block.id !== action.block.id));
     default:
       console.warn(`unknown action type ${action.type}`);
       return state;

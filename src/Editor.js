@@ -7,7 +7,14 @@ import Document from './Document.js';
 
 class Editor extends Component {
   render() {
-    let { appendBlock, updateBlockContent, updateBlockOrder, document } = this.props;
+    let {
+      appendBlock,
+      updateBlockContent,
+      updateBlockOrder,
+      deleteBlock,
+      document
+    } = this.props;
+
     return (
       <div className="editor">
         <Palette onBlockClicked={appendBlock}/>
@@ -15,6 +22,7 @@ class Editor extends Component {
           blocks={document.blocks}
           onBlockContentChanged={updateBlockContent}
           onBlocksReordered={updateBlockOrder}
+          onBlockDeleted={deleteBlock}
         />
       </div>
     );
@@ -41,6 +49,9 @@ function mapDispatchToProps(dispatch) {
     },
     updateBlockOrder: (blocks) => {
       dispatch({type: 'updateBlockOrder', blocks});
+    },
+    deleteBlock: (block) => {
+      dispatch({type: 'deleteBlock', block});
     },
   }
 }
