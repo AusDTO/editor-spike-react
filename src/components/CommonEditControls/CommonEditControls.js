@@ -11,7 +11,7 @@ export default class CommonEditControls extends Component {
         <div className="tools" >
           <button className="info">&lt;{block.kind}&gt;</button>
           <button className="destructive" onClick={this.deleteBlock.bind(this)}>Delete!</button>
-          { block.minister && <button className="action" onClick={this.chooseMinister.bind(this)}>Pick minister</button> }
+          { block.kind === "Minister" && <button className="action" onClick={this.chooseMinister.bind(this)}>Pick minister</button> }
         </div>
         <div className="child-component">
           { children }

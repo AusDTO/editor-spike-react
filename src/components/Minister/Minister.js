@@ -4,7 +4,7 @@ import './Minister.css'
 
 export default class Minister extends Component {
   render () {
-    let { minister } = this.props;
+    let { block: minister } = this.props;
     return (
       <div className="Minister">
         <figure>
@@ -20,6 +20,6 @@ export default class Minister extends Component {
 }
 
 Minister.propTypes = {
-  minister: PropTypes.object.isRequired
+  block: PropTypes.object.isRequired
 };
 

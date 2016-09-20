@@ -30,7 +30,8 @@ export default function document(state = initialState(), action) {
       return state.updateIn(['blocks'], list =>
         list.map(block => {
           if (block.id === action.block.id) {
-            return block.updateIn(['minister'], _ => action.minister);
+            let { image, name, title } = action.minister;
+            return { ...block, image, name, title };
           } else {
             return block;
           }

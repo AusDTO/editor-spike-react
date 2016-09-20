@@ -51,7 +51,7 @@ class Document extends Component {
                 >
                   {
                     (block.kind === "Minister") ?
-                      <Minister minister={block.minister}/>
+                      <Minister block={block}/>
                     :
                       <ContentEditable
                         tagName={block.kind}
