@@ -2,23 +2,11 @@
 import Immutable from 'seamless-immutable';
 import * as editorUIActions from './editorUIActionTypes';
 import * as documentActions from './documentActionTypes';
+import { ministers } from './dummyData';
 
 function initialState() {
   return Immutable({
-    ministers: [
-      {
-        id: 1,
-        name: "Senator the Hon Mitch Fifield",
-        title: "Minister for Communications",
-        image: "https://raw.githubusercontent.com/AusDTO/gov-au-images/master/ministers/mitch-fifield-260x140.png"
-      },
-      {
-        id: 2,
-        name: "Senator the Hon Fiona Nash",
-        title: "Minister for Regional Communications",
-        image: "https://raw.githubusercontent.com/AusDTO/gov-au-images/master/ministers/fiona-nash-260x140.jpg"
-      }
-    ],
+    ministers: ministers,
     ministerChooser: {
       forBlock: null
     }
