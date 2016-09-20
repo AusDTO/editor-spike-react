@@ -8,7 +8,7 @@ import CommonEditControls from '../CommonEditControls';
 import DndItemTypes from './DndItemTypes';
 import Minister from '../Minister';
 import ColumnList from '../ColumnList';
-import Block from '../Block';
+import DraggableBlock from '../DraggableBlock';
 // FIXME: this is a dodgy import.
 import { SIMPLE_BLOCKS } from '../../containers/Editor/reducers/documentActions'
 import './Document.css';
@@ -45,7 +45,7 @@ class Document extends Component {
         {
           blocks.map((block) => {
             return (
-              <Block
+              <DraggableBlock
                 id={block.id}
                 key={block.id}
                 moveBlock={this.moveBlock.bind(this)}
@@ -58,7 +58,7 @@ class Document extends Component {
                 >
                   { this.renderBlock(block) }
                 </CommonEditControls>
-              </Block>
+              </DraggableBlock>
             );
           })
         }
