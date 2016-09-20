@@ -3,11 +3,11 @@ import uuid from 'uuid';
 import * as t from './documentActionTypes';
 import imgPlaceholder from '../../../components/Minister/img-placeholder.gif'
 
-const SIMPLE_BLOCKS = ["h1", "h2", "h3", "p", "blockquote"];
-
 function makeBlock(kind, attrs) {
   return { id: uuid.v4(), kind, ...attrs };
 }
+
+export const SIMPLE_BLOCKS = ["h1", "h2", "h3", "p", "blockquote"];
 
 export const appendBlock = (blockKind) => {
   if (SIMPLE_BLOCKS.includes(blockKind)) {
@@ -25,6 +25,11 @@ export const appendBlock = (blockKind) => {
             name: "[Placeholder name]",
             title: "[Placeholder title]"
           })
+        };
+      case "ColumnList":
+        return {
+          type: t.APPEND_BLOCK,
+          block: makeBlock("ColumnList", { columns: [{}, {}] })
         };
       default:
         console.warn(`Unknown block kind ${blockKind}`);

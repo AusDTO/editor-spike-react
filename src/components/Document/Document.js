@@ -5,10 +5,12 @@ import HTML5Backend from 'react-dnd-html5-backend';
 import ContentEditable from 'react-contenteditable';
 
 import CommonEditControls from '../CommonEditControls';
-import Minister from '../Minister';
-import Block from '../Block';
-
 import DndItemTypes from './DndItemTypes';
+import Minister from '../Minister';
+import ColumnList from '../ColumnList';
+import Block from '../Block';
+// FIXME: this is a dodgy import.
+import { SIMPLE_BLOCKS } from '../../containers/Editor/reducers/documentActions'
 import './Document.css';
 
 class Document extends Component {
@@ -43,22 +45,18 @@ class Document extends Component {
         {
           blocks.map((block) => {
             return (
-              <Block id={block.id} key={block.id} moveBlock={this.moveBlock.bind(this)} findBlock={this.findBlock.bind(this)}>
+              <Block
+                id={block.id}
+                key={block.id}
+                moveBlock={this.moveBlock.bind(this)}
+                findBlock={this.findBlock.bind(this)}
+              >
                 <CommonEditControls
                   block={block}
                   onDeleteBlock={this.deleteBlock.bind(this)}
                   onChooseMinister={this.onChooseMinister.bind(this)}
                 >
-                  {
-                    (block.kind === "Minister") ?
-                      <Minister block={block}/>
-                    :
-                      <ContentEditable
-                        tagName={block.kind}
-                        html={block.content}
-                        onChange={this.contentEditableChanged.bind(this, block.id)}
-                      />
-                  }
+                  { this.renderBlock(block) }
                 </CommonEditControls>
               </Block>
             );
@@ -66,6 +64,24 @@ class Document extends Component {
         }
       </div>
     );
+  }
+
+  renderBlock(block) {
+    if (SIMPLE_BLOCKS.includes(block.kind)) {
+      return (
+        <ContentEditable
+          tagName={block.kind}
+          html={block.content}
+          onChange={this.contentEditableChanged.bind(this, block.id)}
+        />
+      );
+    } else if (block.kind === "Minister") {
+      return <Minister block={block}/>;
+    } else if (block.kind === "ColumnList") {
+      return <ColumnList block={block}/>;
+    } else {
+      return <div>UNKNOWN BLOCK KIND ({block.kind})</div>;
+    }
   }
 
   contentEditableChanged(blockId, event) {
