@@ -45,7 +45,7 @@ const blockTarget = {
 };
 
 
-class Block extends Component {
+class DraggableBlock extends Component {
   render() {
     const { isDragging, connectDragSource, connectDropTarget } = this.props;
     const opacity = isDragging ? 0 : 1;
@@ -59,7 +59,7 @@ class Block extends Component {
   }
 }
 
-Block.propTypes = {
+DraggableBlock.propTypes = {
   moveBlock: PropTypes.func.isRequired,
   findBlock: PropTypes.func.isRequired,
   connectDragSource: PropTypes.func.isRequired,
@@ -73,5 +73,5 @@ export default DropTarget(DndItemTypes.BLOCK, blockTarget, connect => ({
 }))(DragSource(DndItemTypes.BLOCK, blockSource, (connect, monitor) => ({
   connectDragSource: connect.dragSource(),
   isDragging: monitor.isDragging()
-}))(Block));
+}))(DraggableBlock));
 

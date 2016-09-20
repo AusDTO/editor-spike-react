@@ -11,13 +11,16 @@ class Palette extends Component {
         {this.blockButton("p")}
         {this.blockButton("blockquote")}
         {this.blockButton("Minister")}
+        {this.blockButton("ColumnList", "List (columns)")}
+        {this.blockButton("RowList", "List (rows)")}
       </div>
     );
   }
 
-  blockButton(blockName) {
+  blockButton(blockName, buttonText) {
+    buttonText = buttonText || blockName;
     return (
-      <button onClick={this.props.onBlockClicked.bind(this, blockName)}>{blockName}</button>
+      <button onClick={this.props.onBlockClicked.bind(this, blockName)}>{buttonText}</button>
     );
   }
 }
