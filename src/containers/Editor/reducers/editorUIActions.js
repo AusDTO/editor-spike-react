@@ -6,3 +6,6 @@ export const showMinisterChooser = (block) => ({
   block
 });
 
+export const hideMinisterChooser = () => ({
+  type: t.HIDE_MINISTER_CHOOSER
+});

@@ -1,7 +1,6 @@
 
 import Immutable from 'seamless-immutable';
-import * as editorUIActions from './editorUIActionTypes';
-import * as documentActions from './documentActionTypes';
+import * as actions from './editorUIActionTypes';
 import { ministers } from './dummyData';
 
 function initialState() {
@@ -15,9 +14,9 @@ function initialState() {
 
 export default function ui(state = initialState(), action) {
   switch (action.type) {
-    case editorUIActions.SHOW_MINISTER_CHOOSER:
+    case actions.SHOW_MINISTER_CHOOSER:
       return state.updateIn(['ministerChooser', 'forBlock'], _ => action.block);
-    case documentActions.SET_MINISTER:
+    case actions.HIDE_MINISTER_CHOOSER:
       return state.updateIn(['ministerChooser', 'forBlock'], _ => null);
     default:
       return state;

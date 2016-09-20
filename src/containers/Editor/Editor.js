@@ -61,8 +61,11 @@ function mapDispatchToProps(dispatch) {
     updateBlockContent: dispatchAction(actions.updateBlockContent),
     updateBlockOrder:   dispatchAction(actions.updateBlockOrder),
     deleteBlock:        dispatchAction(actions.deleteBlock),
-    chooseMinister:     dispatchAction(actions.chooseMinister),
-    setMinister:        dispatchAction(actions.setMinister)
+    chooseMinister:     dispatchAction(actions.showMinisterChooser),
+    setMinister:        (block, minister) => {
+      dispatch(actions.setMinister(block, minister));
+      dispatch(actions.hideMinisterChooser());
+    }
   }
 }
 
