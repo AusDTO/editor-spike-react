@@ -7,6 +7,10 @@ function makeBlock(kind, attrs) {
   return { id: uuid.v4(), kind, ...attrs };
 }
 
+function blurb() {
+  return "The Digital Transformation Office (DTO) was established as an executive agency in July 2015. Its mission is to lead the […]";
+}
+
 export const SIMPLE_BLOCKS = ["h1", "h2", "h3", "p", "blockquote"];
 
 export const appendBlock = (blockKind) => {
@@ -29,7 +33,11 @@ export const appendBlock = (blockKind) => {
       case "ColumnList":
         return {
           type: t.APPEND_BLOCK,
-          block: makeBlock("ColumnList", { columns: [{}, {}] })
+          block: makeBlock("ColumnList", { columns: [
+            {heading: "List item 1", content: blurb() },
+            {heading: "List item 2", content: blurb() },
+            {heading: "List item 3", content: blurb() },
+          ]})
         };
       default:
         console.warn(`Unknown block kind ${blockKind}`);
