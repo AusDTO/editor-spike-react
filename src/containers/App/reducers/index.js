@@ -1,3 +1,3 @@
-import reducers from '../../Editor/reducers/index';
+import { reducer } from '../../Editor/reducers';
 
-export default reducers;
+export default reducer;

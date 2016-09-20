@@ -1,5 +1,6 @@
 
 import Immutable from 'seamless-immutable';
+import * as actions from './documentActionTypes';
 
 function initialState() {
   return Immutable({
@@ -13,19 +14,19 @@ function indexOfBlock(blocks, blockId) {
 
 export default function document(state = initialState(), action) {
   switch (action.type) {
-    case 'appendBlock':
+    case actions.APPEND_BLOCK:
       return state.updateIn(['blocks'], list => list.concat(action.block));
-    case 'updateBlockContent':
+    case actions.UPDATE_BLOCK_CONTENT:
       return state.updateIn([
         'blocks',
         indexOfBlock(state.blocks, action.blockId),
         'content'
       ], _ => action.newContent);
-    case 'updateBlockOrder':
+    case actions.UPDATE_BLOCK_ORDER:
       return state.updateIn(['blocks'], _ => action.blocks);
-    case 'deleteBlock':
+    case actions.DELETE_BLOCK:
       return state.updateIn(['blocks'], list => list.filter(block => block.id !== action.block.id));
-    case 'ministerChosen':
+    case actions.SET_MINISTER:
       return state.updateIn(['blocks'], list =>
         list.map(block => {
           if (block.id === action.block.id) {
