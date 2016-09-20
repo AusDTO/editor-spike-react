@@ -1,5 +1,7 @@
 import React, { Component, PropTypes } from 'react';
 
+import './Minister.css'
+
 export default class Minister extends Component {
   render () {
     let { minister } = this.props;

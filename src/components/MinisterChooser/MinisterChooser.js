@@ -14,13 +14,21 @@ class MinisterChooser extends Component {
 
   renderMinisters() {
     let { ministers } = this.props;
+    const onClick = this.chooseMinister.bind(this)
     return ministers.map(minister => {
       return (
         <li key={minister.id}>
-          <p>
-            <button onClick={this.chooseMinister.bind(this, minister)}>Choose</button>
-            {minister.name}
-          </p>
+          <a href={`#${minister.name}`} onClick={e => {
+              e.preventDefault()
+              onClick.call(null, minister)
+            }}>
+            <div className="MinisterChooser__image">
+              <img src={minister.image} alt={minister.name} />
+            </div>
+            <div className="MinisterChooser__meta">
+              <p>{minister.name}</p>
+            </div>
+          </a>
         </li>
       );
     });
@@ -36,7 +44,7 @@ class MinisterChooser extends Component {
       >
         <div className="MinisterChooser">
           <h3 ref="subtitle">Choose a minister</h3>
-          <ul>
+          <ul className="MinisterChooser__list">
             { this.renderMinisters() }
           </ul>
         </div>

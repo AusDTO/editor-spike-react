@@ -6,3 +6,12 @@
   border-radius: 30px;
   display: inline-block;
 }
+
+.MinisterChooser__list li {
+  display: inline-block;
+  margin-right: 1em;
+}
+
+.MinisterChooser__list li a {
+  display: block;
+}
