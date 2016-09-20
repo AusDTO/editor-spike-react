@@ -13,8 +13,9 @@ export default class CommonEditControls extends Component {
           <button className="destructive" onClick={this.deleteBlock.bind(this)}>Delete!</button>
           { block.minister && <button className="action" onClick={this.chooseMinister.bind(this)}>Pick minister</button> }
         </div>
-
-        { children }
+        <div className="child-component">
+          { children }
+        </div>
       </div>
     );
   }
