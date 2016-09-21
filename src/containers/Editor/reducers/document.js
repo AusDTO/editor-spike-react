@@ -4,7 +4,8 @@ import * as actions from './documentActionTypes';
 
 function initialState() {
   return Immutable({
-    blocks: []
+    blocks: [],
+    configure: {}
   });
 };
 
@@ -22,6 +23,12 @@ export default function document(state = initialState(), action) {
         indexOfBlock(state.blocks, action.blockId),
         'content'
       ], _ => action.newContent);
+    case actions.UPDATE_BLOCK_PROPERTY:
+      return state.updateIn([
+        'blocks',
+        indexOfBlock(state.blocks, action.blockId),
+        action.prop
+      ], _ => action.propValue);
     case actions.UPDATE_BLOCK_ORDER:
       return state.updateIn(['blocks'], _ => action.blocks);
     case actions.DELETE_BLOCK:
@@ -37,6 +44,8 @@ export default function document(state = initialState(), action) {
           }
         })
       );
+    case actions.CONFIGURE_BLOCK:
+      return state.updateIn(['configure'], _ => indexOfBlock(state.blocks, action.blockId))
     default:
       return state;
   }

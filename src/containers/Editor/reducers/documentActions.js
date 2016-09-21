@@ -44,7 +44,17 @@ export const appendBlock = (blockKind) => {
           type: t.APPEND_BLOCK,
           block: makeBlock(blockKind, {
             type: 'basic',
-            content: 'Sample link'
+            content: 'Sample link',
+            href: '#',
+            properties: [
+              { type: 'text', label: 'Link', property: 'href' },
+              { type: 'radio', label: 'Link type', property: 'type',
+                options: [
+                  { label: 'Basic', value: 'basic' },
+                  { label: 'See More', value: 'seemore' },
+                ]
+              }
+            ]
           })
         }
       default:
@@ -57,6 +67,13 @@ export const updateBlockContent = (blockId, newContent) => ({
   type: t.UPDATE_BLOCK_CONTENT,
   blockId,
   newContent
+});
+
+export const updateBlockProperty = (blockId, prop, propValue) => ({
+  type: t.UPDATE_BLOCK_PROPERTY,
+  blockId,
+  prop,
+  propValue
 });
 
 export const updateBlockOrder = (blocks) => ({
@@ -75,3 +92,7 @@ export const setMinister = (block, minister) => ({
   minister
 });
 
+export const configureBlock = (blockId) => ({
+  type: t.CONFIGURE_BLOCK,
+  blockId
+})

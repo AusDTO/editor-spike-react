@@ -13,12 +13,14 @@ class Editor extends Component {
     let {
       appendBlock,
       updateBlockContent,
+      updateBlockProperty,
       updateBlockOrder,
       deleteBlock,
       chooseMinister,
       setMinister,
+      controlsClick,
       document,
-      editorUI 
+      editorUI
     } = this.props;
 
     return (
@@ -30,10 +32,13 @@ class Editor extends Component {
           onMinisterChosen={setMinister}/>
         <Document
           blocks={document.blocks}
+          configure={document.configure}
           onBlockContentChanged={updateBlockContent}
+          updateBlockProperty={updateBlockProperty}
           onBlocksReordered={updateBlockOrder}
           onBlockDeleted={deleteBlock}
           onChooseMinister={chooseMinister}
+          onControlsClick={controlsClick}
         />
       </div>
     );
@@ -59,9 +64,11 @@ function mapDispatchToProps(dispatch) {
   return {
     appendBlock:        dispatchAction(actions.appendBlock),
     updateBlockContent: dispatchAction(actions.updateBlockContent),
+    updateBlockProperty:dispatchAction(actions.updateBlockProperty),
     updateBlockOrder:   dispatchAction(actions.updateBlockOrder),
     deleteBlock:        dispatchAction(actions.deleteBlock),
     chooseMinister:     dispatchAction(actions.showMinisterChooser),
+    controlsClick:      block => dispatch(actions.configureBlock(block)),
     setMinister:        (block, minister) => {
       dispatch(actions.setMinister(block, minister));
       dispatch(actions.hideMinisterChooser());

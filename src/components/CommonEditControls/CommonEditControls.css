@@ -32,17 +32,12 @@
   border-radius: 10px;
 }
 
-.CommonEditControls:hover {
+.CommonEditControls:hover, .CommonEditControls.active {
   outline: 2px dashed #BEBEBE;
 }
 
-.CommonEditControls:hover .tools {
+.CommonEditControls:hover .tools, .CommonEditControls.active .tools {
   position: absolute;
   display: block;
   top: -17.5px
-}
-
-.CommonEditControls:hover .tools {
-  position: absolute;
-  display: block;
 }

@@ -4,9 +4,15 @@ import './CommonEditControls.css'
 export default class CommonEditControls extends Component {
 
   render () {
-    let { block, children } = this.props;
+    let { block, children, activeConfigBlock } = this.props;
+
+    let className = ''
+    if (block && activeConfigBlock && block.id === activeConfigBlock.id) {
+      className = 'active'
+    }
+
     return (
-      <div className="CommonEditControls" >
+      <div className={`CommonEditControls ${className}`} onClick={this.configureBlock.bind(this)} >
 
         <div className="tools" >
           <button className="info">&lt;{block.kind}&gt;</button>
@@ -18,6 +24,11 @@ export default class CommonEditControls extends Component {
         </div>
       </div>
     );
+  }
+
+  configureBlock() {
+    const { onClick, block } = this.props
+    onClick(block)
   }
 
   deleteBlock() {
@@ -36,5 +47,3 @@ CommonEditControls.propTypes = {
   onDeleteBlock: PropTypes.func.isRequired,
   onChooseMinister: PropTypes.func.isRequired
 };
-
-
