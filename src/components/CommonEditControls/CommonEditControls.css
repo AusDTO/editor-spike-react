@@ -2,6 +2,7 @@
 .CommonEditControls {
   position: relative;
   padding: 17.5px 10px 10px;
+  margin-bottom: 2em;
 }
 
 .CommonEditControls .tools {

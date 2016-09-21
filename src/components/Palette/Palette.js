@@ -10,6 +10,7 @@ class Palette extends Component {
         {this.blockButton("h3")}
         {this.blockButton("p")}
         {this.blockButton("blockquote")}
+        {this.blockButton("a")}
         {this.blockButton("Minister")}
         {this.blockButton("ColumnList", "List (columns)")}
         {this.blockButton("RowList", "List (rows)")}

@@ -39,6 +39,14 @@ export const appendBlock = (blockKind) => {
             {heading: "List item 3", content: blurb() },
           ]})
         };
+      case "a":
+        return {
+          type: t.APPEND_BLOCK,
+          block: makeBlock(blockKind, {
+            type: 'basic',
+            content: 'Sample link'
+          })
+        }
       default:
         console.warn(`Unknown block kind ${blockKind}`);
     }

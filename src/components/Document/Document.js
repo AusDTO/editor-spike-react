@@ -8,6 +8,7 @@ import CommonEditControls from '../CommonEditControls';
 import DndItemTypes from './DndItemTypes';
 import Minister from '../Minister';
 import ColumnList from '../ColumnList';
+import Anchor from '../Anchor';
 import DraggableBlock from '../DraggableBlock';
 // FIXME: this is a dodgy import.
 import { SIMPLE_BLOCKS } from '../../containers/Editor/reducers/documentActions'
@@ -79,6 +80,8 @@ class Document extends Component {
       return <Minister block={block}/>;
     } else if (block.kind === "ColumnList") {
       return <ColumnList block={block}/>;
+    } else if (block.kind === "a") {
+      return <Anchor block={block} />
     } else {
       return <div>UNKNOWN BLOCK KIND ({block.kind})</div>;
     }
