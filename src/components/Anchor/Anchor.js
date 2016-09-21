@@ -1,5 +1,4 @@
 import React from 'react'
-import ContentEditable from 'react-contenteditable';
 
 const Anchor = ({ block, onChange }) => {
   const { type, content, href = '#' } = block
@@ -9,8 +8,8 @@ const Anchor = ({ block, onChange }) => {
       onChange={onChange}
       contentEditable="true"
       className={type === 'seemore' ? 'see-more' : ''}
-      href={href}>
-      {content}
+      href={href}
+      dangerouslySetInnerHTML={{__html: content}}>
     </a>
   )
 }

@@ -45,7 +45,7 @@ export default function document(state = initialState(), action) {
         })
       );
     case actions.CONFIGURE_BLOCK:
-      return state.updateIn(['configure'], _ => indexOfBlock(state.blocks, action.blockId))
+      return state.updateIn(['configure'], _ => action.blockId)
     default:
       return state;
   }
