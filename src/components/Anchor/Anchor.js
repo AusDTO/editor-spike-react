@@ -1,17 +1,18 @@
 import React from 'react'
+import ContentEditable from 'react-contenteditable';
 
-const Anchor = ({ block }) => {
+const Anchor = ({ block, onChange }) => {
   const { type, content, href = '#' } = block
-  switch (type) {
-    case 'seemore':
-      return (
-        <a className="see-more" href={href}>{content}</a>
-      )
-    default:
-      return (
-        <a href={href}>{content}</a>
-      )
-  }
+
+  return (
+    <a
+      onChange={onChange}
+      contentEditable="true"
+      className={type === 'seemore' ? 'see-more' : ''}
+      href={href}>
+      {content}
+    </a>
+  )
 }
 
 export default Anchor

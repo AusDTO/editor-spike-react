@@ -47,7 +47,6 @@ export const appendBlock = (blockKind) => {
             content: 'Sample link',
             href: '#',
             properties: [
-              { type: 'text', label: 'Title', property: 'content' },
               { type: 'text', label: 'Link', property: 'href' },
               { type: 'radio', label: 'Link type', property: 'type',
                 options: [

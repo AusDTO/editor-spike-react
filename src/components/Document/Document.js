@@ -89,7 +89,7 @@ class Document extends Component {
     } else if (block.kind === "ColumnList") {
       return <ColumnList block={block}/>;
     } else if (block.kind === "a") {
-      return <Anchor block={block} />
+      return <Anchor block={block} onChange={this.contentEditableChanged.bind(this, block.id)} />
     } else {
       return <div>UNKNOWN BLOCK KIND ({block.kind})</div>;
     }
