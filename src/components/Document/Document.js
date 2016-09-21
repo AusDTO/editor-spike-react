@@ -42,6 +42,7 @@ class Document extends Component {
 
   render() {
     let { blocks, configure, updateBlockProperty } = this.props;
+    const configureBlock = blocks.filter(b => b.id === configure)[0]
     return (
       <div className="Document">
         <section className="Document__elements">
@@ -56,7 +57,7 @@ class Document extends Component {
                 >
                   <CommonEditControls
                     block={block}
-                    activeConfigBlock={blocks[configure]}
+                    activeConfigBlock={configureBlock}
                     onDeleteBlock={this.deleteBlock.bind(this)}
                     onChooseMinister={this.onChooseMinister.bind(this)}
                     onClick={this.onControlsClick.bind(this)}
@@ -69,7 +70,7 @@ class Document extends Component {
           }
         </section>
         <aside className="Document__sidebar">
-          <Configuration configureBlock={blocks[configure]} updateBlockProperty={updateBlockProperty} />
+          <Configuration configureBlock={configureBlock} updateBlockProperty={updateBlockProperty} />
         </aside>
       </div>
     );
