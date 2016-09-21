@@ -10,6 +10,7 @@ import Minister from '../Minister';
 import ColumnList from '../ColumnList';
 import Anchor from '../Anchor';
 import DraggableBlock from '../DraggableBlock';
+import Configuration from '../Configuration';
 // FIXME: this is a dodgy import.
 import { SIMPLE_BLOCKS } from '../../containers/Editor/reducers/documentActions'
 import './Document.css';
@@ -40,29 +41,36 @@ class Document extends Component {
   }
 
   render() {
-    let { blocks } = this.props;
+    let { blocks, configure, updateBlockProperty } = this.props;
     return (
       <div className="Document">
-        {
-          blocks.map((block) => {
-            return (
-              <DraggableBlock
-                id={block.id}
-                key={block.id}
-                moveBlock={this.moveBlock.bind(this)}
-                findBlock={this.findBlock.bind(this)}
-              >
-                <CommonEditControls
-                  block={block}
-                  onDeleteBlock={this.deleteBlock.bind(this)}
-                  onChooseMinister={this.onChooseMinister.bind(this)}
+        <section className="Document__elements">
+          {
+            blocks.map((block) => {
+              return (
+                <DraggableBlock
+                  id={block.id}
+                  key={block.id}
+                  moveBlock={this.moveBlock.bind(this)}
+                  findBlock={this.findBlock.bind(this)}
                 >
-                  { this.renderBlock(block) }
-                </CommonEditControls>
-              </DraggableBlock>
-            );
-          })
-        }
+                  <CommonEditControls
+                    block={block}
+                    activeConfigBlock={blocks[configure]}
+                    onDeleteBlock={this.deleteBlock.bind(this)}
+                    onChooseMinister={this.onChooseMinister.bind(this)}
+                    onClick={this.onControlsClick.bind(this)}
+                  >
+                    { this.renderBlock(block) }
+                  </CommonEditControls>
+                </DraggableBlock>
+              );
+            })
+          }
+        </section>
+        <aside className="Document__sidebar">
+          <Configuration configureBlock={blocks[configure]} updateBlockProperty={updateBlockProperty} />
+        </aside>
       </div>
     );
   }
@@ -100,6 +108,11 @@ class Document extends Component {
   onChooseMinister(block) {
     let { onChooseMinister } = this.props;
     onChooseMinister(block);
+  }
+
+  onControlsClick(block) {
+    let { onControlsClick } = this.props;
+    onControlsClick(block.id)
   }
 }
 

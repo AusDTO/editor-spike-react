@@ -1,8 +1,19 @@
-
 .Document {
+  overflow: hidden;
+}
+
+.Document__elements {
   padding: 30px;
   min-height: 90vh;
   border: 1px solid #BEBEBE;
   border: 1px solid white;
 	box-shadow: 0 0 2px #BEBEBE;
+  width: 70%;
+  float: left;
+}
+
+.Document__sidebar {
+  width: 30%;
+  float: left;
+  padding: 30px;
 }
